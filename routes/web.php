@@ -10,12 +10,17 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('contactame', function (){
-    return "Seccion de contactos";
-})->name('contacto');
 
-Route::get('/', function () {
-    echo "<a href='" . route('contacto') . "'>Contactos 1</a><br>";
-});
+Route::view('/','home')->name('home');
+Route::view('/about','about')->name('about');
+Route::view('/portfolio','portfolio')->name('portfolio');
+Route::view('/contact','contact')->name('contact');
+
+//Route::view('/','home');
+
+//Route::get('/', function () {
+//    $nombre = "Sam";
+//    return view('home', compact('nombre'));
+//})->name('home');
 //
 
