@@ -11,10 +11,11 @@
 |
 */
 
+
 Route::view('/','home')->name('home');
 Route::view('/about','about')->name('about');
 Route::view('/contact','contact')->name('contact');
-Route::view('/portfolio','portfolio')->name('portfolio');
-
+Route::get('/portfolio','projectController@index')->name('portfolio.index');
+Route::get('/portfolio/{id}','projectController@show')->name('portfolio.show');
 Route::post('contact', 'MessagesCtrl@store');
 
