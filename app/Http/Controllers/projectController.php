@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Requests\CreateProjectRequest;
 use App\Project;
 use http\Env\Request;
 
@@ -32,12 +33,8 @@ class projectController
         return view('projects.create');
     }
 
-    public function store(){
-        Project::create([
-            'title' => \request('title'),
-            'url' => \request('url'),
-            'description' => \request('description')
-        ]);
+    public function store(CreateProjectRequest $request){
+        Project::create($request->validated());
         return redirect()->route('portfolio.index');
     }
 }
