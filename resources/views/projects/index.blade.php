@@ -2,7 +2,7 @@
 @section('title','Portfolio')
 @section('content')
     <h1>Portfolio</h1>
-
+    <a href="{{route('portfolio.create')}}"><button>Crear proyecto</button></a>
     <ul>
         @forelse($projects as $project)
             <li>
@@ -18,4 +18,5 @@
 
     </ul>
     {{$projects->links()}}
+
 @endsection

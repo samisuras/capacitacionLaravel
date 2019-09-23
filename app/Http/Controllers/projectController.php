@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 
 use App\Project;
+use http\Env\Request;
 
 class projectController
 {
@@ -20,10 +21,23 @@ class projectController
         ]);
     }
 
-    public function show($index){
+    public function show(Project $project){
 
         return view('projects.show',[
-            'project' => Project::findOrFail($index)
+            'project' => $project
         ]);
+    }
+
+    public function create(){
+        return view('projects.create');
+    }
+
+    public function store(){
+        Project::create([
+            'title' => \request('title'),
+            'url' => \request('url'),
+            'description' => \request('description')
+        ]);
+        return redirect()->route('portfolio.index');
     }
 }
