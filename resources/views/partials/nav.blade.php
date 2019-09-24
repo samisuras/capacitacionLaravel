@@ -18,11 +18,29 @@
         @guest
             <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
         @else
-            <li class="nav-item"><a class="dropdown-item nav-link" href="#"
-                   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                    Logout
-                </a></li>
+            @if(auth()->user()->hasRoles(['admin','estudiante']))
+                <li class="nav-item">
+                    <a href="{{ route('usuarios.index') }}" class="nav-link">
+                        Usuarios
+                    </a>
+                </li>
+            @endif
+            <li class="nav-item dropdown">
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle" type="button"
+                       id="dropdownMenuButton" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        {{ auth()->user()->name }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="/logout"
+                           onclick="event.preventDefault();
+                           document.getElementById('logout-form').submit();">
+                            Cerrar sesion
+                        </a>
+                    </div>
+                </div>
+            </li>
         @endguest
     </ul>
     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
