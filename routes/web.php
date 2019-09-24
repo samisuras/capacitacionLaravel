@@ -21,3 +21,5 @@ Route::resource('projects','ProjectController');
 
 Route::post('contact', 'MessagesCtrl@store');
 
+
+Auth::routes(['register'=>false]);

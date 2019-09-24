@@ -3,7 +3,9 @@
 @section('content')
     <h1>Portfolio</h1>
     <br>
+    @auth
     <a href="{{route('projects.create')}}"><button>Crear proyecto</button></a>
+    @endauth
     <ul>
         @forelse($projects as $project)
             <li>

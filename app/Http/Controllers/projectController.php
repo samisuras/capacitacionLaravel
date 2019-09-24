@@ -9,8 +9,14 @@ use App\Http\Requests\SaveProjectRequest;
 use App\Project;
 use http\Env\Request;
 
-class projectController
+class projectController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index','show');
+    }
+
     public function __invoke()
     {
         // TODO: Implement __invoke() method.
