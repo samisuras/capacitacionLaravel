@@ -31,7 +31,9 @@ class projectController
     }
 
     public function create(){
-        return view('projects.create');
+        return view('projects.create', [
+            'project' => new Project
+        ]);
     }
 
     public function store(SaveProjectRequest $request){
@@ -49,5 +51,10 @@ class projectController
     public function update(Project $project, SaveProjectRequest $request){
         $project->update($request->validated());
         return redirect()->route('portfolio.show',$project);
+    }
+
+    public function destroy(Project $project){
+        $project->delete();
+        return redirect()->route('portfolio.index');
     }
 }
