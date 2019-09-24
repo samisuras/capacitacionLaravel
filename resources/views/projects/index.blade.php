@@ -2,11 +2,11 @@
 @section('title','Portfolio')
 @section('content')
     <h1>Portfolio</h1>
-    <a href="{{route('portfolio.create')}}"><button>Crear proyecto</button></a>
+    <a href="{{route('projects.create')}}"><button>Crear proyecto</button></a>
     <ul>
         @forelse($projects as $project)
             <li>
-                <a href="{{route('portfolio.show',$project)}}">
+                <a href="{{route('projects.show',$project)}}">
                     {{$project->title}}
                 </a>
             </li>
