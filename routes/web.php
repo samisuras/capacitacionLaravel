@@ -19,8 +19,15 @@
 //]);
 
 use App\Http\Controllers\UsersController;
+use function foo\func;
 
 Route::view('/','home')->name('home');
+
+//Prueba
+Route::get('roles',function(){
+    return \App\Role::with('user')->get();
+});
+
 Route::view('/about','about')->name('about');
 Route::view('/contact','contact')->name('contact');
 
