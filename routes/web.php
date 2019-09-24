@@ -10,12 +10,16 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('contactame', function (){
-    return "Seccion de contactos";
-})->name('contacto');
 
-Route::get('/', function () {
-    echo "<a href='" . route('contacto') . "'>Contactos 1</a><br>";
-});
-//
 
+
+Route::view('/','home')->name('home');
+Route::view('/about','about')->name('about');
+Route::view('/contact','contact')->name('contact');
+
+Route::resource('projects','ProjectController');
+
+Route::post('contact', 'MessagesCtrl@store');
+
+
+Auth::routes(['register'=>false]);
