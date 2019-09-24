@@ -7,12 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title', 'Aprendiendo')</title>
     <link rel="stylesheet" href="/css/app.css">
-    <style>
-        .active a {
-            color: red;
-            text-decoration: none;
-        }
-    </style>
+    <script src="/js/app.js" defer></script>
 </head>
 <body>
     @include('partials/nav')

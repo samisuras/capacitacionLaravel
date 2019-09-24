@@ -10642,3 +10642,8 @@ a.text-dark:focus {
   }
 }
 
+.active a {
+  color: red;
+  text-decoration: none;
+}
+
