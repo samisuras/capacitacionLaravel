@@ -38,7 +38,7 @@ class projectController
 
     public function store(SaveProjectRequest $request){
         Project::create($request->validated());
-        return redirect()->route('projects.index');
+        return redirect()->route('projects.index')->with('status','El proyecto fue creado con exito');
     }
 
 
@@ -50,11 +50,11 @@ class projectController
 
     public function update(Project $project, SaveProjectRequest $request){
         $project->update($request->validated());
-        return redirect()->route('projects.show',$project);
+        return redirect()->route('projects.show',$project)->with('status','El proyecto fu eliminado con exito');
     }
 
     public function destroy(Project $project){
         $project->delete();
-        return redirect()->route('projects.index');
+        return redirect()->route('projects.index')->with('status','El proyecto fue eliminado con exito');
     }
 }

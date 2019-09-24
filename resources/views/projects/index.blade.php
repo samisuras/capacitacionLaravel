@@ -2,6 +2,7 @@
 @section('title','Portfolio')
 @section('content')
     <h1>Portfolio</h1>
+    <br>
     <a href="{{route('projects.create')}}"><button>Crear proyecto</button></a>
     <ul>
         @forelse($projects as $project)

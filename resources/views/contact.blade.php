@@ -3,6 +3,8 @@
 @section('content')
     <h1>@lang('Contact')</h1>
 
+    @include('partials.session-status')
+
     <form method="post" action="{{route('contact')}}">
         @csrf
         <input type="text" placeholder="Nombre" name="name" id="" value="{{old('name')}}">
