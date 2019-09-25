@@ -21,9 +21,11 @@
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
                         <td>
-                            @foreach($user->roles as $role)
-                                {{$role->name}},
-                            @endforeach
+{{--                            @foreach($user->roles as $role)--}}
+{{--                                {{$role->name}},--}}
+{{--                            @endforeach--}}
+{{--                            Puede ser tambien--}}
+                            {{$user->roles->pluck('display_name')->implode(', ')}}
                         </td>
                         <td>
                             @can('edit',$user)
