@@ -30,7 +30,7 @@
                     <a class="nav-link dropdown-toggle" type="button"
                        id="dropdownMenuButton" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
-                        {{ auth()->user()->name }}
+                        {{ auth()->user()->roles[0]->name }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="/logout"

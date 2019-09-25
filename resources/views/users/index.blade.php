@@ -20,8 +20,11 @@
                         <td>{{$user->id}}</td>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
-                        <td>{{$user->role->display_name}}</td>
-                        <td></td>
+                        <td>
+                            @foreach($user->roles as $role)
+                                {{$role->name}},
+                            @endforeach
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
