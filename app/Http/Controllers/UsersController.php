@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\Http\Requests\userRequest;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -67,6 +69,9 @@ class UsersController extends Controller
     public function edit($id)
     {
         //
+        return view('users.edit',[
+            'user'=>User::find($id)
+        ]);
     }
 
     /**
@@ -76,9 +81,12 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(userRequest $request,$id)
     {
         //
+        $user = User::find($id);
+        $user->update($request->validationData());
+        return back()->with('info','Usuario actualizado');
     }
 
     /**
@@ -90,5 +98,6 @@ class UsersController extends Controller
     public function destroy($id)
     {
         //
+        return $id;
     }
 }
