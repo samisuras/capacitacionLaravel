@@ -36,4 +36,23 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function roles(){
+        return $this->belongsToMany(Role::class, 'assigned_roles');
+    }
+
+    public function isAdmin(){
+        $this->hasRoles(['admin']);
+    }
+
+    public function hasRoles(array $roles){
+//        foreach ($roles as $role){
+//            foreach ($this->roles as $userRole)
+//                if($userRole->name === $role)
+//                    return true;
+//        }
+//        return false;
+//        //O podria ser asi
+        return (boolean)$this->roles->pluck('name')->intersect($roles)->count();
+    }
 }

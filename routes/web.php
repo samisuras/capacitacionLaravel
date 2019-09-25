@@ -10,12 +10,31 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('contactame', function (){
-    return "Seccion de contactos";
-})->name('contacto');
-
-Route::get('/', function () {
-    echo "<a href='" . route('contacto') . "'>Contactos 1</a><br>";
-});
 //
+//App\User::create([
+//    'name' => 'Samus',
+//    'email'=> 'raulsamuel@gmail.com',
+//    'password'=> bcrypt('hola12345'),
+//    'role'=>'estudiante'
+//]);
 
+use App\Http\Controllers\UsersController;
+use function foo\func;
+
+Route::view('/','home')->name('home');
+
+//Prueba
+Route::get('roles',function(){
+    return \App\Role::with('user')->get();
+});
+
+Route::view('/about','about')->name('about');
+Route::view('/contact','contact')->name('contact');
+
+Route::resource('projects','ProjectController');
+
+Route::post('contact', 'MessagesCtrl@store');
+
+Route::resource('usuarios','UsersController');
+
+Auth::routes(['register'=>false]);
