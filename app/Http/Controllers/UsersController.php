@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Events\UserUpdated;
 use App\Http\Requests\userRequest;
+use Illuminate\Console\Scheduling\Event;
 use Illuminate\Http\Request;
 use App\Policies\userPolicy;
 
@@ -94,6 +96,7 @@ class UsersController extends Controller
         $user = User::find($id);
         $this->authorize($user);
         $user->update($request->validationData());
+        event(new UserUpdated($user));
         return back()->with('info','Usuario actualizado');
     }
 
