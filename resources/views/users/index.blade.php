@@ -26,6 +26,7 @@
                             @endforeach
                         </td>
                         <td>
+                            @can('edit',$user)
                             <a class="btn btn-info btn-xs"
                                href="{{ route('usuarios.edit', $user->id) }}">
                                 Editar
@@ -37,6 +38,7 @@
                                 <button class="btn btn-danger btn-xs"
                                         type="submit">Eliminar</button>
                             </form>
+                            @endcan
                         </td>
                     </tr>
                 @endforeach

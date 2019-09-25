@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Http\Requests\userRequest;
 use Illuminate\Http\Request;
+use App\Policies\userPolicy;
 
 class UsersController extends Controller
 {
@@ -16,7 +17,7 @@ class UsersController extends Controller
 
     function __construct()
     {
-       $this->middleware(['auth','roles:admin,estudiante']);
+       $this->middleware(['auth','roles:admin,estudiante'])->except('show');
     }
 
     public function index()
@@ -58,6 +59,10 @@ class UsersController extends Controller
     public function show($id)
     {
         //
+        $user = User::findOrFail($id);
+        return view('users.show',[
+            'user'=>$user
+        ]);
     }
 
     /**
@@ -69,8 +74,10 @@ class UsersController extends Controller
     public function edit($id)
     {
         //
+        $user = User::find($id);
+        $this->authorize($user);
         return view('users.edit',[
-            'user'=>User::find($id)
+            'user'=> $user
         ]);
     }
 
@@ -85,6 +92,7 @@ class UsersController extends Controller
     {
         //
         $user = User::find($id);
+        $this->authorize($user);
         $user->update($request->validationData());
         return back()->with('info','Usuario actualizado');
     }
@@ -98,6 +106,9 @@ class UsersController extends Controller
     public function destroy($id)
     {
         //
-        return $id;
+        $user = User::findOrFail($id);
+        $this->authorize($user);
+        $user->delete();
+        return back()->with('info','Usuario eliminado');
     }
 }
