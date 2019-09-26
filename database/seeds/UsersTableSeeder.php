@@ -14,6 +14,7 @@ class UsersTableSeeder extends Seeder
     {
         User::truncate();
         Role::truncate();
+        DB::table('assigned_roles')->truncate();
 
         for($i =1;$i<21;$i++){
             $user = User::create([

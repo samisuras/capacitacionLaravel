@@ -96,7 +96,7 @@ class UsersController extends Controller
         $user = User::find($id);
         $this->authorize($user);
         $user->update($request->validationData());
-        event(new UserUpdated($user));
+//        event(new UserUpdated($user));
         return back()->with('info','Usuario actualizado');
     }
 
