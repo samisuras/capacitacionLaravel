@@ -1,8 +1,10 @@
 @extends('layout')
 @section('title','Crear Proyecto')
 @section('content')
-    <h1>Usuuarios</h1>
-
+    <h1>Usuarios</h1>
+    <div class="container">
+        {{ $users->links() }}
+    </div>
     <div class="col-sm-12">
         <table class="table">
             <thead>

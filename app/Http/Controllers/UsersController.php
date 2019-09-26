@@ -25,7 +25,7 @@ class UsersController extends Controller
     public function index()
     {
         //
-        $users = \App\User::all();
+        $users = User::paginate(8);
         return view('users.index',[
             'users'=>$users
         ]);
