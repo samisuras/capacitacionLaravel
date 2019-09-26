@@ -19,7 +19,13 @@
 //]);
 
 use App\Http\Controllers\UsersController;
+use App\Jobs\SendEmail;
 use function foo\func;
+
+Route::get('job', function(){
+   dispatch(new SendEmail());
+   return "Listo!";
+});
 
 Route::view('/','home')->name('home');
 

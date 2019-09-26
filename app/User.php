@@ -10,6 +10,11 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    public function __construct()
+    {
+
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -36,6 +41,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    private $email;
+    private $name;
 
     public function roles(){
         return $this->belongsToMany(Role::class, 'assigned_roles');
@@ -54,5 +61,9 @@ class User extends Authenticatable
 //        return false;
 //        //O podria ser asi
         return (boolean)$this->roles->pluck('name')->intersect($roles)->count();
+    }
+
+    public function present(){
+        return new User($this);
     }
 }
